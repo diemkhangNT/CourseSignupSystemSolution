@@ -1,0 +1,60 @@
+version: '3.4'
+
+networks:
+  webapiservices:
+
+services:
+  hocviendb: 
+    container_name: hocvien-db
+    image: mcr.microsoft.com/mssql/server:2019-latest
+    environment:
+      - ACCEPT_EULA=Y
+      - SA_PASSWORD=Dk1912@2002!
+    networks:
+      - webapiservices
+    ports:
+      - 8001:1433
+  hocvienwebapi:
+    container_name: hocvien-api
+    image: ${DOCKER_REGISTRY-}hocvienwebapi
+    build:
+      context: .
+      dockerfile: HocVienWebAPI/Dockerfile
+    networks:
+      - webapiservices
+    ports:
+      - 8002:80
+    depends_on: 
+      - hocviendb
+    environment:
+      - DB_HOST=hocviendb
+      - DB_NAME=hocvien
+      - DB_SA_PASSWORD=Dk1912@2002!
+
+
+  daotaodb:
+    container_name: daotao-db
+    image: mcr.microsoft.com/mssql/server:2019-latest
+    environment:
+      - ACCEPT_EULA=Y
+      - SA_PASSWORD=Dk1912@2002!
+    networks:
+      - webapiservices
+    ports:
+      - 8003:1433
+  daotaowebapi:
+    container_name: daotao-api
+    image: ${DOCKER_REGISTRY-}daotaowebapi
+    build:
+      context: .
+      dockerfile: DaoTaoWebAPI/Dockerfile
+    networks:
+      - webapiservices
+    ports:
+      - 8004:80
+    depends_on: 
+      - daotaodb
+    environment:
+      - DB_HOST=daotaodb
+      - DB_NAME=daotao
+      - DB_SA_PASSWORD=Dk1912@2002!
