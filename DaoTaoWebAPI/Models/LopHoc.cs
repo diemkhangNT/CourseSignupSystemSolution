@@ -38,10 +38,8 @@ namespace DaoTaoWebAPI.Models
         public string MaMH { get; set; }
         public virtual MonHoc MonHocs { get; set; }
 
-        [Required]
         public string? MaLichNghi { get; set; }
 
-        [Required]
         public string? MaGV { get; set; }
 
     }
