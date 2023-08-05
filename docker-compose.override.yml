@@ -13,3 +13,24 @@ services:
     ports:
       - "80"
 
+
+  giangvienwebapi:
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+    ports:
+      - "80"
+
+
+  lichnghiwebapi:
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+    ports:
+      - "80"
+
+
+  ghidanh_doanhthu:
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+    ports:
+      - "80"
+

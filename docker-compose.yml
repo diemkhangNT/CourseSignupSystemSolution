@@ -58,3 +58,84 @@ services:
       - DB_HOST=daotaodb
       - DB_NAME=daotao
       - DB_SA_PASSWORD=Dk1912@2002!
+
+  giangviendb:
+    container_name: giangvien-db
+    image: mcr.microsoft.com/mssql/server:2019-latest
+    environment:
+      - ACCEPT_EULA=Y
+      - SA_PASSWORD=Dk1912@2002!
+    networks:
+      - webapiservices
+    ports:
+      - 8005:1433
+  giangvienwebapi:
+    container_name: giangvien-api
+    image: ${DOCKER_REGISTRY-}giangvienwebapi
+    build:
+      context: .
+      dockerfile: GiangVienWebAPI/Dockerfile
+    networks:
+      - webapiservices
+    ports:
+      - 8006:80
+    depends_on: 
+      - giangviendb
+    environment:
+      - DB_HOST=giangviendb
+      - DB_NAME=giangvien
+      - DB_SA_PASSWORD=Dk1912@2002!
+
+  lichnghidb:
+    container_name: lichnghi-db
+    image: mcr.microsoft.com/mssql/server:2019-latest
+    environment:
+      - ACCEPT_EULA=Y
+      - SA_PASSWORD=Dk1912@2002!
+    networks:
+      - webapiservices
+    ports:
+      - 8007:1433
+  lichnghiwebapi:
+    container_name: lichnghi-api
+    image: ${DOCKER_REGISTRY-}lichnghiwebapi
+    build:
+      context: .
+      dockerfile: LichNghiWebAPI/Dockerfile
+    networks:
+      - webapiservices
+    ports:
+      - 8008:80
+    depends_on: 
+      - lichnghidb
+    environment:
+      - DB_HOST=lichnghidb
+      - DB_NAME=lichnghi
+      - DB_SA_PASSWORD=Dk1912@2002!
+
+  ghidanh_doanhthudb:
+    container_name: ghidanh_doanhthu-db
+    image: mcr.microsoft.com/mssql/server:2019-latest
+    environment:
+      - ACCEPT_EULA=Y
+      - SA_PASSWORD=Dk1912@2002!
+    networks:
+      - webapiservices
+    ports:
+      - 8009:1433
+  ghidanh_doanhthu:
+    container_name: ghidanh_doanhthu-api
+    image: ${DOCKER_REGISTRY-}ghidanhdoanhthu
+    build:
+      context: .
+      dockerfile: GhiDanh_DoanhThu/Dockerfile
+    networks:
+      - webapiservices
+    ports:
+      - 8010:80
+    depends_on: 
+      - ghidanh_doanhthudb
+    environment:
+      - DB_HOST=ghidanh_doanhthudb
+      - DB_NAME=ghidanh_doanhthu
+      - DB_SA_PASSWORD=Dk1912@2002!

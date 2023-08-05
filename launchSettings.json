@@ -5,7 +5,10 @@
       "commandVersion": "1.0",
       "serviceActions": {
         "hocvienwebapi": "StartDebugging",
-        "daotaowebapi": "StartDebugging"
+        "daotaowebapi": "StartDebugging",
+        "giangvienwebapi": "StartDebugging",
+        "lichnghiwebapi": "StartDebugging",
+        "ghidanh_doanhthu": "StartDebugging"
       }
     }
   }

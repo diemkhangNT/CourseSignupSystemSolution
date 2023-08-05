@@ -1,12 +1,5 @@
-﻿global using GiangVienWebAPI.Data;
-global using GiangVienWebAPI.Models;
-global using GiangVienWebAPI.Interfaces;
-global using GiangVienWebAPI.Services;
-global using Microsoft.EntityFrameworkCore;
-global using Microsoft.AspNetCore.Mvc;
-
-global using System.ComponentModel.DataAnnotations;
-global using System.ComponentModel.DataAnnotations.Schema;
+﻿using LichNghiWebAPI.Data;
+using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -32,14 +25,15 @@ var dbHost = Environment.GetEnvironmentVariable("DB_HOST");
 var dbName = Environment.GetEnvironmentVariable("DB_NAME");
 var dbPassword = Environment.GetEnvironmentVariable("DB_SA_PASSWORD");
 //var dbHost = ".";
-//var dbName = "dms_giangvien";
+//var dbName = "dms_lichnghi";
 //var dbPassword = "Dk1912@2002!";
 var connectionString = $"Data Source={dbHost}; Initial Catalog={dbName}; User ID=sa; Password={dbPassword}";
-builder.Services.AddDbContext<ApiDbContext>(opt => opt.UseSqlServer(connectionString));
+builder.Services.AddDbContext<APIDbContext>(opt => opt.UseSqlServer(connectionString));
 
 // Đăng ký interface IExistAlreadyService và thực hiện các chức năng của nó trong file ExistAlreadyService
-builder.Services.AddScoped<IExistName, ExistNameService>();
+//builder.Services.AddScoped<IIndexValid, IndexValidService>();
 #endregion
+
 
 var app = builder.Build();
 
