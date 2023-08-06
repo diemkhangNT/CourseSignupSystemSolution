@@ -1,0 +1,415 @@
+﻿{
+  "Routes": [
+    //Lich nghỉ web api
+    {
+      "UpstreamPathTemplate": "/api/LichNghis",
+      "UpstreamHttpMethod": [ "Get", "Post" ],
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "lichnghiwebapi",
+          "Port": 80
+        }
+      ],
+      "DownstreamPathTemplate": "/api/LichNghis"
+    },
+    {
+      "UpstreamPathTemplate": "/api/LichNghis/{MaLN}",
+      "UpstreamHttpMethod": [ "Get", "Put", "Delete" ],
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Port": 80,
+          "Host": "lichnghiwebapi"
+        }
+      ],
+      "DownstreamPathTemplate": "/api/LichNghis/{MaLN}"
+    },
+
+    //Học viên web api
+    //Học viên
+    {
+
+      "UpstreamPathTemplate": "/api/HocViens",
+      "UpstreamHttpMethod": [ "Get", "Post" ],
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "hocvienwebapi",
+          "Port": 80
+        }
+      ],
+      "DownstreamPathTemplate": "/api/HocViens"
+    },
+    {
+      "UpstreamPathTemplate": "/api/HocViens/{MaHV}",
+      "UpstreamHttpMethod": [ "Get", "Put", "Delete" ],
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Port": 80,
+          "Host": "hocvienwebapi"
+        }
+      ],
+      "DownstreamPathTemplate": "/api/HocViens/{MaHV}"
+    },
+
+    //Học viên web api
+    //Liên hệ
+    {
+      "UpstreamPathTemplate": "/api/LienHes",
+      "UpstreamHttpMethod": [ "Get", "Post" ],
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "hocvienwebapi",
+          "Port": 80
+        }
+      ],
+      "DownstreamPathTemplate": "/api/LienHes"
+    },
+    {
+      "UpstreamPathTemplate": "/api/LienHes/{MaLH}",
+      "UpstreamHttpMethod": [ "Get", "Put", "Delete" ],
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Port": 80,
+          "Host": "hocvienwebapi"
+        }
+      ],
+      "DownstreamPathTemplate": "/api/LienHes/{MaLH}"
+    },
+
+    //Giang vien web api
+    //Giảng viên
+    {
+
+      "UpstreamPathTemplate": "/api/GiangViens",
+      "UpstreamHttpMethod": [ "Get", "Post" ],
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "giangvienwebapi",
+          "Port": 80
+        }
+      ],
+      "DownstreamPathTemplate": "/api/GiangViens"
+    },
+    {
+      "UpstreamPathTemplate": "/api/GiangViens/{MaGV}",
+      "UpstreamHttpMethod": [ "Get", "Put", "Delete" ],
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Port": 80,
+          "Host": "giangvienwebapi"
+        }
+      ],
+      "DownstreamPathTemplate": "/api/GiangViens/{MaGV}"
+    },
+
+    //Giang vien web api
+    //Phân công giảng dạy
+    {
+
+      "UpstreamPathTemplate": "/api/PhanCongGiangDays",
+      "UpstreamHttpMethod": [ "Get", "Post" ],
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "giangvienwebapi",
+          "Port": 80
+        }
+      ],
+      "DownstreamPathTemplate": "/api/PhanCongGiangDays"
+    },
+    {
+      "UpstreamPathTemplate": "/api/PhanCongGiangDays/{MaGV}/{MaLop}",
+      "UpstreamHttpMethod": [ "Get", "Put", "Delete" ],
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Port": 80,
+          "Host": "giangvienwebapi"
+        }
+      ],
+      "DownstreamPathTemplate": "/api/PhanCongGiangDays/{MaGV}/{MaLop}"
+    },
+
+    //Ghi danh và doanh thu web api
+    //Đăng ký
+    {
+
+      "UpstreamPathTemplate": "/api/DangKies",
+      "UpstreamHttpMethod": [ "Get", "Post" ],
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "ghidanh_doanhthu",
+          "Port": 80
+        }
+      ],
+      "DownstreamPathTemplate": "/api/DangKies"
+    },
+    {
+      "UpstreamPathTemplate": "/api/DangKies/{MaDK}",
+      "UpstreamHttpMethod": [ "Get", "Put", "Delete" ],
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Port": 80,
+          "Host": "ghidanh_doanhthu"
+        }
+      ],
+      "DownstreamPathTemplate": "/api/DangKies/{MaDK}"
+    },
+
+    //Ghi danh và doanh thu web api
+    //Học phí
+    {
+
+      "UpstreamPathTemplate": "/api/HocPhis",
+      "UpstreamHttpMethod": [ "Get", "Post" ],
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "ghidanh_doanhthu",
+          "Port": 80
+        }
+      ],
+      "DownstreamPathTemplate": "/api/HocPhis"
+    },
+    {
+      "UpstreamPathTemplate": "/api/HocPhis/{MaHP}",
+      "UpstreamHttpMethod": [ "Get", "Put", "Delete" ],
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Port": 80,
+          "Host": "ghidanh_doanhthu"
+        }
+      ],
+      "DownstreamPathTemplate": "/api/HocPhis/{MaHP}"
+    },
+
+    //Đào tạo web api
+    //Bộ môn
+    {
+      "UpstreamPathTemplate": "/api/BoMons",
+      "UpstreamHttpMethod": [ "Get", "Post" ],
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "daotaowebapi",
+          "Port": 80
+        }
+      ],
+      "DownstreamPathTemplate": "/api/BoMons"
+    },
+    {
+      "UpstreamPathTemplate": "/api/BoMons/{MaBM}",
+      "UpstreamHttpMethod": [ "Get", "Put", "Delete" ],
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Port": 80,
+          "Host": "daotaowebapi"
+        }
+      ],
+      "DownstreamPathTemplate": "/api/BoMons/{MaBM}"
+    },
+
+    //Đào tạo web api
+    //Điểm
+    {
+      "UpstreamPathTemplate": "/api/Diems",
+      "UpstreamHttpMethod": [ "Get", "Post" ],
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "daotaowebapi",
+          "Port": 80
+        }
+      ],
+      "DownstreamPathTemplate": "/api/Diems"
+    },
+    {
+      "UpstreamPathTemplate": "/api/Diems/{lophocid}/{hocvienid}",
+      "UpstreamHttpMethod": [ "Get", "Put", "Delete" ],
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Port": 80,
+          "Host": "daotaowebapi"
+        }
+      ],
+      "DownstreamPathTemplate": "/api/Diems/{lophocid}/{hocvienid}"
+    },
+
+    //Đào tạo web api
+    //Khoa
+    {
+      "UpstreamPathTemplate": "/api/Khoas",
+      "UpstreamHttpMethod": [ "Get", "Post" ],
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "daotaowebapi",
+          "Port": 80
+        }
+      ],
+      "DownstreamPathTemplate": "/api/Khoas"
+    },
+    {
+      "UpstreamPathTemplate": "/api/Khoas/{MaKhoa}",
+      "UpstreamHttpMethod": [ "Get", "Put", "Delete" ],
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Port": 80,
+          "Host": "daotaowebapi"
+        }
+      ],
+      "DownstreamPathTemplate": "/api/Khoas/{MaKhoa}"
+    },
+
+    //Đào tạo web api
+    //Loại Điểm - Môn học
+    {
+      "UpstreamPathTemplate": "/api/LoaiDiem_MH",
+      "UpstreamHttpMethod": [ "Get", "Post" ],
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "daotaowebapi",
+          "Port": 80
+        }
+      ],
+      "DownstreamPathTemplate": "/api/LoaiDiem_MH"
+    },
+    {
+      "UpstreamPathTemplate": "/api/LoaiDiem_MH/{monhocid}/{loaidiemid}",
+      "UpstreamHttpMethod": [ "Get", "Put", "Delete" ],
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Port": 80,
+          "Host": "daotaowebapi"
+        }
+      ],
+      "DownstreamPathTemplate": "/api/LoaiDiem_MH/{monhocid}/{loaidiemid}"
+    },
+
+    //Đào tạo web api
+    //Loại điểm
+    {
+      "UpstreamPathTemplate": "/api/LoaiDiems",
+      "UpstreamHttpMethod": [ "Get", "Post" ],
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "daotaowebapi",
+          "Port": 80
+        }
+      ],
+      "DownstreamPathTemplate": "/api/LoaiDiems"
+    },
+    {
+      "UpstreamPathTemplate": "/api/LoaiDiems/{MaLDiem}",
+      "UpstreamHttpMethod": [ "Get", "Put", "Delete" ],
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Port": 80,
+          "Host": "daotaowebapi"
+        }
+      ],
+      "DownstreamPathTemplate": "/api/LoaiDiems/{MaLDiem}"
+    },
+
+    //Đào tạo web api
+    //Lớp học
+    {
+      "UpstreamPathTemplate": "/api/LopHocs",
+      "UpstreamHttpMethod": [ "Get", "Post" ],
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "daotaowebapi",
+          "Port": 80
+        }
+      ],
+      "DownstreamPathTemplate": "/api/LopHocs"
+    },
+    {
+      "UpstreamPathTemplate": "/api/LopHocs/{MaLop}",
+      "UpstreamHttpMethod": [ "Get", "Put", "Delete" ],
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Port": 80,
+          "Host": "daotaowebapi"
+        }
+      ],
+      "DownstreamPathTemplate": "/api/LopHocs/{MaLop}"
+    },
+
+    //Đào tạo web api
+    //Môn học
+    {
+      "UpstreamPathTemplate": "/api/MonHocs",
+      "UpstreamHttpMethod": [ "Get", "Post" ],
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "daotaowebapi",
+          "Port": 80
+        }
+      ],
+      "DownstreamPathTemplate": "/api/MonHocs"
+    },
+    {
+      "UpstreamPathTemplate": "/api/MonHocs/{MaMH}",
+      "UpstreamHttpMethod": [ "Get", "Put", "Delete" ],
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Port": 80,
+          "Host": "daotaowebapi"
+        }
+      ],
+      "DownstreamPathTemplate": "/api/MonHocs/{MaMH}"
+    },
+
+    //Đào tạo web api
+    //Niên khóa
+    {
+      "UpstreamPathTemplate": "/api/NienKhoas",
+      "UpstreamHttpMethod": [ "Get", "Post" ],
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "daotaowebapi",
+          "Port": 80
+        }
+      ],
+      "DownstreamPathTemplate": "/api/NienKhoas"
+    },
+    {
+      "UpstreamPathTemplate": "/api/NienKhoas/{MaNK}",
+      "UpstreamHttpMethod": [ "Get", "Put", "Delete" ],
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Port": 80,
+          "Host": "daotaowebapi"
+        }
+      ],
+      "DownstreamPathTemplate": "/api/NienKhoas/{MaNK}"
+    }
+  ],
+  "GlobalConfiguration": {
+    "BaseUrl": "http://localhost:800"
+  }
+}
