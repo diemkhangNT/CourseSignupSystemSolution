@@ -3,10 +3,15 @@ version: '3.4'
 networks:
   webapiservices:
 
+volumes:
+  myvolume:
+
 services:
   hocviendb: 
     container_name: hocvien-db
     image: mcr.microsoft.com/mssql/server:2019-latest
+    volumes:
+      - myvolume:/var/otp/mssql
     environment:
       - ACCEPT_EULA=Y
       - SA_PASSWORD=Dk1912@2002!
@@ -20,10 +25,10 @@ services:
     build:
       context: .
       dockerfile: HocVienWebAPI/Dockerfile
+    ports:
+      - 18001:80
     networks:
       - webapiservices
-    ports:
-      - 8002:80
     depends_on: 
       - hocviendb
     environment:
@@ -35,6 +40,8 @@ services:
   daotaodb:
     container_name: daotao-db
     image: mcr.microsoft.com/mssql/server:2019-latest
+    volumes:
+      - myvolume:/var/otp/mssql
     environment:
       - ACCEPT_EULA=Y
       - SA_PASSWORD=Dk1912@2002!
@@ -48,10 +55,10 @@ services:
     build:
       context: .
       dockerfile: DaoTaoWebAPI/Dockerfile
+    ports:
+      - 18002:80
     networks:
       - webapiservices
-    ports:
-      - 8004:80
     depends_on: 
       - daotaodb
     environment:
@@ -62,6 +69,8 @@ services:
   giangviendb:
     container_name: giangvien-db
     image: mcr.microsoft.com/mssql/server:2019-latest
+    volumes:
+      - myvolume:/var/otp/mssql
     environment:
       - ACCEPT_EULA=Y
       - SA_PASSWORD=Dk1912@2002!
@@ -75,10 +84,10 @@ services:
     build:
       context: .
       dockerfile: GiangVienWebAPI/Dockerfile
+    ports:
+      - 18003:80
     networks:
       - webapiservices
-    ports:
-      - 8006:80
     depends_on: 
       - giangviendb
     environment:
@@ -89,6 +98,8 @@ services:
   lichnghidb:
     container_name: lichnghi-db
     image: mcr.microsoft.com/mssql/server:2019-latest
+    volumes:
+      - myvolume:/var/otp/mssql
     environment:
       - ACCEPT_EULA=Y
       - SA_PASSWORD=Dk1912@2002!
@@ -102,10 +113,10 @@ services:
     build:
       context: .
       dockerfile: LichNghiWebAPI/Dockerfile
+    ports:
+      - 18004:80
     networks:
       - webapiservices
-    ports:
-      - 8008:80
     depends_on: 
       - lichnghidb
     environment:
@@ -116,6 +127,8 @@ services:
   ghidanh_doanhthudb:
     container_name: ghidanh_doanhthu-db
     image: mcr.microsoft.com/mssql/server:2019-latest
+    volumes:
+      - myvolume:/var/otp/mssql
     environment:
       - ACCEPT_EULA=Y
       - SA_PASSWORD=Dk1912@2002!
@@ -129,13 +142,25 @@ services:
     build:
       context: .
       dockerfile: GhiDanh_DoanhThu/Dockerfile
+    ports:
+      - 18005:80
     networks:
       - webapiservices
-    ports:
-      - 8010:80
     depends_on: 
       - ghidanh_doanhthudb
     environment:
       - DB_HOST=ghidanh_doanhthudb
       - DB_NAME=ghidanh_doanhthu
       - DB_SA_PASSWORD=Dk1912@2002!
+
+  apigateway:
+    container_name: api-gateway
+    image: ${DOCKER_REGISTRY-}apigateway
+    build:
+      context: .
+      dockerfile: APIGateway/Dockerfile
+    ports:
+      - 8001:80
+    networks:
+      - webapiservices
+

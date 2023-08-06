@@ -8,7 +8,8 @@
         "daotaowebapi": "StartDebugging",
         "giangvienwebapi": "StartDebugging",
         "lichnghiwebapi": "StartDebugging",
-        "ghidanh_doanhthu": "StartDebugging"
+        "ghidanh_doanhthu": "StartDebugging",
+        "apigateway": "StartDebugging"
       }
     }
   }
