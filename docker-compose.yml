@@ -3,30 +3,28 @@ version: '3.4'
 networks:
   webapiservices:
 
-volumes:
-  myvolume:
 
 services:
   hocviendb: 
     container_name: hocvien-db
     image: mcr.microsoft.com/mssql/server:2019-latest
     volumes:
-      - myvolume:/var/otp/mssql
+      - hocvien_data:/var/otp/mssql
     environment:
       - ACCEPT_EULA=Y
       - SA_PASSWORD=Dk1912@2002!
     networks:
       - webapiservices
     ports:
-      - 8001:1433
+      - 18001:1433
   hocvienwebapi:
     container_name: hocvien-api
     image: ${DOCKER_REGISTRY-}hocvienwebapi
     build:
       context: .
       dockerfile: HocVienWebAPI/Dockerfile
-    ports:
-      - 18001:80
+    #ports:
+    #  - 18001:80
     networks:
       - webapiservices
     depends_on: 
@@ -41,22 +39,22 @@ services:
     container_name: daotao-db
     image: mcr.microsoft.com/mssql/server:2019-latest
     volumes:
-      - myvolume:/var/otp/mssql
+      - daotao_data:/var/otp/mssql
     environment:
       - ACCEPT_EULA=Y
       - SA_PASSWORD=Dk1912@2002!
     networks:
       - webapiservices
     ports:
-      - 8003:1433
+      - 18003:1433
   daotaowebapi:
     container_name: daotao-api
     image: ${DOCKER_REGISTRY-}daotaowebapi
     build:
       context: .
       dockerfile: DaoTaoWebAPI/Dockerfile
-    ports:
-      - 18002:80
+    #ports:
+    #  - 18002:80
     networks:
       - webapiservices
     depends_on: 
@@ -70,22 +68,22 @@ services:
     container_name: giangvien-db
     image: mcr.microsoft.com/mssql/server:2019-latest
     volumes:
-      - myvolume:/var/otp/mssql
+      - giangvien_data:/var/otp/mssql
     environment:
       - ACCEPT_EULA=Y
       - SA_PASSWORD=Dk1912@2002!
     networks:
       - webapiservices
     ports:
-      - 8005:1433
+      - 18005:1433
   giangvienwebapi:
     container_name: giangvien-api
     image: ${DOCKER_REGISTRY-}giangvienwebapi
     build:
       context: .
       dockerfile: GiangVienWebAPI/Dockerfile
-    ports:
-      - 18003:80
+    #ports:
+    #  - 18003:80
     networks:
       - webapiservices
     depends_on: 
@@ -99,22 +97,22 @@ services:
     container_name: lichnghi-db
     image: mcr.microsoft.com/mssql/server:2019-latest
     volumes:
-      - myvolume:/var/otp/mssql
+      - lichnghi_data:/var/otp/mssql
     environment:
       - ACCEPT_EULA=Y
       - SA_PASSWORD=Dk1912@2002!
     networks:
       - webapiservices
     ports:
-      - 8007:1433
+      - 18007:1433
   lichnghiwebapi:
     container_name: lichnghi-api
     image: ${DOCKER_REGISTRY-}lichnghiwebapi
     build:
       context: .
       dockerfile: LichNghiWebAPI/Dockerfile
-    ports:
-      - 18004:80
+    #ports:
+    #  - 18004:80
     networks:
       - webapiservices
     depends_on: 
@@ -128,22 +126,22 @@ services:
     container_name: ghidanh_doanhthu-db
     image: mcr.microsoft.com/mssql/server:2019-latest
     volumes:
-      - myvolume:/var/otp/mssql
+      - ghidanh_doanhthu_data:/var/otp/mssql
     environment:
       - ACCEPT_EULA=Y
       - SA_PASSWORD=Dk1912@2002!
     networks:
       - webapiservices
     ports:
-      - 8009:1433
+      - 18009:1433
   ghidanh_doanhthu:
     container_name: ghidanh_doanhthu-api
     image: ${DOCKER_REGISTRY-}ghidanhdoanhthu
     build:
       context: .
       dockerfile: GhiDanh_DoanhThu/Dockerfile
-    ports:
-      - 18005:80
+    #ports:
+    #  - 18005:80
     networks:
       - webapiservices
     depends_on: 
@@ -160,7 +158,13 @@ services:
       context: .
       dockerfile: APIGateway/Dockerfile
     ports:
-      - 8001:80
+      - 8002:80
     networks:
       - webapiservices
 
+volumes:
+  hocvien_data:
+  daotao_data:
+  giangvien_data:
+  lichnghi_data:
+  ghidanh_doanhthu_data:
