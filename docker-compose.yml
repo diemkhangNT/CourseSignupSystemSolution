@@ -9,7 +9,7 @@ services:
     container_name: hocvien-db
     image: mcr.microsoft.com/mssql/server:2019-latest
     volumes:
-      - hocvien_data:/var/otp/mssql
+      - hocvien_data:/var/otp/mssql/data
     environment:
       - ACCEPT_EULA=Y
       - SA_PASSWORD=Dk1912@2002!
@@ -151,6 +151,35 @@ services:
       - DB_NAME=ghidanh_doanhthu
       - DB_SA_PASSWORD=Dk1912@2002!
 
+  phanquyendb:
+    container_name: phanquyen-db
+    image: mcr.microsoft.com/mssql/server:2019-latest
+    volumes:
+      - phanquyen_data:/var/otp/mssql
+    environment:
+      - ACCEPT_EULA=Y
+      - SA_PASSWORD=Dk1912@2002!
+    networks:
+      - webapiservices
+    ports:
+      - 18011:1433
+  phanquyenwedapi:
+    container_name: phanquyen-api
+    image: ${DOCKER_REGISTRY-}phanquyenwedapi
+    build:
+      context: .
+      dockerfile: PhanQuyenWedAPI/Dockerfile
+    #ports:
+    #  - 18005:80
+    networks:
+      - webapiservices
+    depends_on: 
+      - phanquyendb
+    environment:
+      - DB_HOST=phanquyendb
+      - DB_NAME=phanquyen
+      - DB_SA_PASSWORD=Dk1912@2002!
+
   apigateway:
     container_name: api-gateway
     image: ${DOCKER_REGISTRY-}apigateway
@@ -162,9 +191,12 @@ services:
     networks:
       - webapiservices
 
+
 volumes:
   hocvien_data:
   daotao_data:
   giangvien_data:
   lichnghi_data:
   ghidanh_doanhthu_data:
+  phanquyen_data:
+

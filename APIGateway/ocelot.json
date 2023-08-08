@@ -407,6 +407,60 @@
         }
       ],
       "DownstreamPathTemplate": "/api/NienKhoas/{MaNK}"
+    },
+
+    //phân quyền web api
+    //Nhân viên
+    {
+      "UpstreamPathTemplate": "/api/NhanViens",
+      "UpstreamHttpMethod": [ "Get", "Post" ],
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "phanquyenwedapi",
+          "Port": 80
+        }
+      ],
+      "DownstreamPathTemplate": "/api/NhanViens"
+    },
+    {
+      "UpstreamPathTemplate": "/api/NhanViens/{MaNV}",
+      "UpstreamHttpMethod": [ "Get", "Put", "Delete" ],
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Port": 80,
+          "Host": "phanquyenwedapi"
+        }
+      ],
+      "DownstreamPathTemplate": "/api/NhanViens/{MaNV}"
+    },
+
+    //phân quyền web api
+    //Người dùng
+    {
+      "UpstreamPathTemplate": "/api/NguoiDungs",
+      "UpstreamHttpMethod": [ "Get", "Post" ],
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "phanquyenwedapi",
+          "Port": 80
+        }
+      ],
+      "DownstreamPathTemplate": "/api/NguoiDungs"
+    },
+    {
+      "UpstreamPathTemplate": "/api/NguoiDungs/{UserId}",
+      "UpstreamHttpMethod": [ "Get", "Put", "Delete" ],
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Port": 80,
+          "Host": "phanquyenwedapi"
+        }
+      ],
+      "DownstreamPathTemplate": "/api/NguoiDungs/{UserId}"
     }
   ],
   "GlobalConfiguration": {

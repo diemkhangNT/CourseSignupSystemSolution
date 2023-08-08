@@ -9,7 +9,8 @@
         "giangvienwebapi": "StartDebugging",
         "lichnghiwebapi": "StartDebugging",
         "ghidanh_doanhthu": "StartDebugging",
-        "apigateway": "StartDebugging"
+        "apigateway": "StartDebugging",
+        "phanquyenwedapi": "StartDebugging"
       }
     }
   }
