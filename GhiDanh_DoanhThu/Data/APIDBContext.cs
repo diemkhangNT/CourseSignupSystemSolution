@@ -28,6 +28,7 @@ namespace GhiDanh_DoanhThu.Data
 
         public virtual DbSet<DangKy> DangKies { get; set; }
         public virtual DbSet<HocPhi> HocPhis { get; set; }
+        public virtual DbSet<DoanhThu> DoanhThus { get; set; }
 
 
         //Set up primary key
@@ -48,6 +49,12 @@ namespace GhiDanh_DoanhThu.Data
                 {
                     string num = new string(Enumerable.Repeat(chars, 10).Select(s => s[rnd.Next(s.Length)]).ToArray());
                     hocPhi.MaHP = "HP" + "_" + num;
+
+                }
+                else if (entry.Entity is DoanhThu doanhThu)
+                {
+                    DateTime now = DateTime.Now;
+                    doanhThu.MaDT = "DT" + "_" + now.ToString("yyyyMMddHHmmss");
 
                 }
             }

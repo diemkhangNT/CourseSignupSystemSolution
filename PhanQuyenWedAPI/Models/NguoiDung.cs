@@ -12,6 +12,9 @@ namespace PhanQuyenWedAPI.Models
         [Required]
         public string UserName { get; set; }
 
-        public string? QuyenHan { get; set; }
+        [Required]
+        [ForeignKey("VaiTro")]
+        public string MaVT { get; set; }
+        public virtual VaiTro VaiTro { get; set; }
     }
 }

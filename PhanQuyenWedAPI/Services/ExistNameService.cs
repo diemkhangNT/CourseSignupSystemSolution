@@ -55,5 +55,10 @@ namespace PhanQuyenWedAPI.Services
             }
             return true;
         }
+
+        public bool IsTenVT(string tenVT)
+        {
+            return _dbContext.VaiTros.Any(a => a.TenVT == tenVT);
+        }
     }
 }

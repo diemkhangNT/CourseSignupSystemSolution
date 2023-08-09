@@ -41,7 +41,7 @@ namespace GiangVienWebAPI.Controllers
           {
               return NotFound();
           }
-            var phanCongGiangDay = await _context.PhanCongGiangDay.FindAsync(gvid, lhid);
+            var phanCongGiangDay = _context.PhanCongGiangDay.FirstOrDefault(x => x.MaGV == gvid && x.MaLop == lhid);
 
             if (phanCongGiangDay == null)
             {
@@ -119,7 +119,7 @@ namespace GiangVienWebAPI.Controllers
             {
                 return NotFound();
             }
-            var phanCongGiangDay = await _context.PhanCongGiangDay.FindAsync(gvid, lhid);
+            var phanCongGiangDay = _context.PhanCongGiangDay.FirstOrDefault(x => x.MaGV == gvid && x.MaLop == lhid);
             if (phanCongGiangDay == null)
             {
                 return NotFound();

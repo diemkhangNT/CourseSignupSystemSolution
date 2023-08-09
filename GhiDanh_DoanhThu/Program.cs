@@ -1,4 +1,6 @@
 ﻿using GhiDanh_DoanhThu.Data;
+using GhiDanh_DoanhThu.Interface;
+using GhiDanh_DoanhThu.Services;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -31,7 +33,7 @@ var connectionString = $"Data Source={dbHost}; Initial Catalog={dbName}; User ID
 builder.Services.AddDbContext<APIDBContext>(opt => opt.UseSqlServer(connectionString));
 
 // Đăng ký interface IExistAlreadyService và thực hiện các chức năng của nó trong file ExistAlreadyService
-//builder.Services.AddScoped<IExistName, ExistNameService>();
+builder.Services.AddScoped<IDoanhThu, TinhDoanhThu>();
 #endregion
 
 var app = builder.Build();

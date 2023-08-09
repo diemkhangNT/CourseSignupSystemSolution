@@ -193,6 +193,34 @@
       "DownstreamPathTemplate": "/api/HocPhis/{MaHP}"
     },
 
+    //Ghi danh và doanh thu web api
+    //DoanhThu
+    {
+
+      "UpstreamPathTemplate": "/api/DoanhThus",
+      "UpstreamHttpMethod": [ "Get", "Post" ],
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "ghidanh_doanhthu",
+          "Port": 80
+        }
+      ],
+      "DownstreamPathTemplate": "/api/DoanhThus"
+    },
+    {
+      "UpstreamPathTemplate": "/api/DoanhThus/{MaDT}",
+      "UpstreamHttpMethod": [ "Get", "Delete" ],
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Port": 80,
+          "Host": "ghidanh_doanhthu"
+        }
+      ],
+      "DownstreamPathTemplate": "/api/DoanhThus/{MaDT}"
+    },
+
     //Đào tạo web api
     //Bộ môn
     {
@@ -461,6 +489,33 @@
         }
       ],
       "DownstreamPathTemplate": "/api/NguoiDungs/{UserId}"
+    },
+
+    //phân quyền web api
+    //Vai trò
+    {
+      "UpstreamPathTemplate": "/api/VaiTroes",
+      "UpstreamHttpMethod": [ "Get", "Post" ],
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "phanquyenwedapi",
+          "Port": 80
+        }
+      ],
+      "DownstreamPathTemplate": "/api/VaiTroes"
+    },
+    {
+      "UpstreamPathTemplate": "/api/VaiTroes/{MaVT}",
+      "UpstreamHttpMethod": [ "Get", "Put", "Delete" ],
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Port": 80,
+          "Host": "phanquyenwedapi"
+        }
+      ],
+      "DownstreamPathTemplate": "/api/VaiTroes/{MaVT}"
     }
   ],
   "GlobalConfiguration": {

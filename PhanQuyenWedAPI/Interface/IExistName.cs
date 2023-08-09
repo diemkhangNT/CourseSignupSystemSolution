@@ -7,5 +7,6 @@
         bool IsNumber(string sdt);
         bool IsNumberCMND(string cmnd);
         bool IsPassword(string password);
+        bool IsTenVT(string tenVT);
     }
 }

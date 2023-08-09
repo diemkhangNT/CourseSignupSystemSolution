@@ -26,6 +26,7 @@ namespace PhanQuyenWedAPI.Data
         
         public virtual DbSet<NguoiDung> NguoiDungs { get; set; }
         public virtual DbSet<NhanVien> NhanViens { get; set; }
+        public virtual DbSet<VaiTro> VaiTros { get; set; }
 
 
         //Set up primary key
@@ -49,6 +50,13 @@ namespace PhanQuyenWedAPI.Data
                     DateTime now = DateTime.Now;
                     string num9 = new string(Enumerable.Repeat(chars, 6).Select(s => s[rnd.Next(s.Length)]).ToArray());
                     nguoiDung.UserId = "NV" + "_" + num9;
+
+                }
+                else if (entry.Entity is VaiTro vaiTro)
+                {
+                    DateTime now = DateTime.Now;
+                    string num10 = new string(Enumerable.Repeat(chars, 6).Select(s => s[rnd.Next(s.Length)]).ToArray());
+                    vaiTro.MaVT = "VT" + "_" + num10;
 
                 }
             }

@@ -10,7 +10,8 @@
         "lichnghiwebapi": "StartDebugging",
         "ghidanh_doanhthu": "StartDebugging",
         "apigateway": "StartDebugging",
-        "phanquyenwedapi": "StartDebugging"
+        "phanquyenwedapi": "StartDebugging",
+        "blazorwebserverui": "StartDebugging"
       }
     }
   }

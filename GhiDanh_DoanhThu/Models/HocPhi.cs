@@ -20,6 +20,8 @@ namespace GhiDanh_DoanhThu.Models
         [Required]
         public double PhaiThu { get; set; }
 
+        public bool TrangThai { get; set; }
+
         public string? GhiChu { get; set; }
 
     }

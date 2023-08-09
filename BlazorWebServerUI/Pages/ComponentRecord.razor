@@ -1,0 +1,45 @@
+﻿@inject HttpClient httpClient
+@using BlazorWebServerUI.Models
+
+@if (!isEditMode)
+{
+    <tr>
+        <td>@hocVien.MaHV</td>
+        <td>@hocVien.TenHV</td>
+        <td>@hocVien.NgaySinh</td>
+        <td>@hocVien.Email</td>
+        <td>@hocVien.Password</td>
+        <td>@hocVien.PhuHuynh</td>
+        <td>@hocVien.SDTLienLac</td>
+        <td><a @onclick="() =>{ isEditMode = true; }" href="javascript:void(0)"><i class="oi oi-pencil"></i></a></td>
+        <td><a @onclick="async () => await DeleteHocVien.InvokeAsync(hocVien.MaHV)" href="javascript:void(0)"><i class="oi oi-trash"></i></a></td>
+    </tr>
+}
+else
+{
+    <tr>
+        <td><input class="form-control" @bind="hocVien.MaHV" placeholder="Name" /></td>
+        <td><input class="form-control" @bind="hocVien.TenHV" placeholder="Mobile" /></td>
+        <td><input class="form-control" @bind="hocVien.NgaySinh" placeholder="Email" /></td>
+        <td><input class="form-control" @bind="hocVien.Email" placeholder="Email" /></td>
+        <td><input class="form-control" @bind="hocVien.Password" placeholder="Email" /></td>
+        <td><input class="form-control" @bind="hocVien.PhuHuynh" placeholder="Email" /></td>
+        <td><input class="form-control" @bind="hocVien.SDTLienLac" placeholder="Email" /></td>
+        <td><a @onclick="() =>{ isEditMode = true; }" href="javascript:void(0)"><i class="oi oi-pencil"></i></a></td>
+        <td class="pt-3"><a @onclick="async () => {await UpdateHocVien.InvokeAsync(hocVien);isEditMode = false;}" href="javascript:void(0)"><i class="oi oi-thumb-up"></i></a></td>
+        <td></td>
+    </tr>
+}
+
+@code {
+    private bool isEditMode = false;
+
+    [Parameter]
+    public HocVien hocVien { get; set; }
+
+    [Parameter]
+    public EventCallback<HocVien> UpdateHocVien{ get; set; }
+
+    [Parameter]
+    public EventCallback<string> DeleteHocVien { get; set; }
+}

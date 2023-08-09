@@ -2,14 +2,13 @@ version: '3.4'
 
 networks:
   webapiservices:
+  webapiservices_frontend:
 
 
 services:
   hocviendb: 
     container_name: hocvien-db
     image: mcr.microsoft.com/mssql/server:2019-latest
-    volumes:
-      - hocvien_data:/var/otp/mssql/data
     environment:
       - ACCEPT_EULA=Y
       - SA_PASSWORD=Dk1912@2002!
@@ -17,6 +16,9 @@ services:
       - webapiservices
     ports:
       - 18001:1433
+    volumes:
+      - hocvien_data:/var/otp/mssql/data
+    restart: always
   hocvienwebapi:
     container_name: hocvien-api
     image: ${DOCKER_REGISTRY-}hocvienwebapi
@@ -33,6 +35,7 @@ services:
       - DB_HOST=hocviendb
       - DB_NAME=hocvien
       - DB_SA_PASSWORD=Dk1912@2002!
+    restart: always
 
 
   daotaodb:
@@ -190,13 +193,55 @@ services:
       - 8002:80
     networks:
       - webapiservices
+      - webapiservices_frontend
 
+
+  blazorwebserverui:
+    image: ${DOCKER_REGISTRY-}blazorwebserverui
+    build:
+      context: .
+      dockerfile: BlazorWebServerUI/Dockerfile
+    ports:
+      - 8003:80
+    networks:
+      - webapiservices_frontend
 
 volumes:
   hocvien_data:
+    #driver: local
+    #driver_opts:
+    #  type: none
+    #  o: blind
+    #  device: c:/datavol/hocvien
   daotao_data:
+    #driver: local
+    #driver_opts:
+    #  type: none
+    #  o: blind
+    #  device: c:/datavol/daotao
   giangvien_data:
+    #driver: local
+    #driver_opts:
+    #  type: none
+    #  o: blind
+    #  device: c:/datavol/giangvien
   lichnghi_data:
+    #driver: local
+    #driver_opts:
+    #  type: none
+    #  o: blind
+    #  device: c:\datavol\lichnghi
   ghidanh_doanhthu_data:
+    #driver: local
+    #driver_opts:
+    #  type: none
+    #  o: blind
+    #  device: c:\datavol\ghidanh
   phanquyen_data:
+    #driver: local
+    #driver_opts:
+    #  type: none
+    #  o: blind
+    #  device: c:\datavol\phanquyen
+
 

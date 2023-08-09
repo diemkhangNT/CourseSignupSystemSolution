@@ -1,0 +1,90 @@
+﻿@page "/component"
+@using BlazorWebServerUI.Models
+@inject HttpClient httpClient
+
+<h3>Học viên</h3>
+
+<div class="row">
+    <div class="col-12 mt-4">
+        <div class="table-responsive">
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <td>Mã học viên</td>
+                        <td>Tên học viên</td>
+                        <td>Ngày sinh</td>
+                        <td>Email</td>
+                        <td>Password</td>
+                        <td>Phụ Huynh</td>
+                        <td>Số điện thoại</td>
+                        <td></td>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><input class="form-control" @bind="newHocVien.MaHV" placeholder="Name" /></td>
+                        <td><input class="form-control" @bind="newHocVien.TenHV" placeholder="Mobile" /></td>
+                        <td><input class="form-control" @bind="newHocVien.NgaySinh" placeholder="Email" /></td>
+                        <td><input class="form-control" @bind="newHocVien.Email" placeholder="Email" /></td>
+                        <td><input class="form-control" @bind="newHocVien.Password" placeholder="Email" /></td>
+                        <td><input class="form-control" @bind="newHocVien.PhuHuynh" placeholder="Email" /></td>
+                        <td><input class="form-control" @bind="newHocVien.SDTLienLac" placeholder="Email" /></td>
+                        <td class="pt-3"><a @onclick="SaveHocVien" href="javascript:void(0)"><i class="oi oi-thumb-up"></i></a></td>
+                        <td></td>
+                    </tr>
+                    @if (hocViens != null && hocViens.Count != 0)
+                    {
+                        foreach (var hocVien in hocViens)
+                        {
+                            <ComponentRecord 
+                                hocVien="hocVien"
+                                UpdateHocVien="UpdateHocVien"
+                                DeleteHocVien="DeleteHocVien"></ComponentRecord>
+                        }
+                    }
+                    else
+                    {
+                        <tr>
+                            <td class="text-center" colspan="5">No customer records to display</td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+@code {
+    private List<HocVien> hocViens;
+    private HocVien newHocVien = new HocVien();
+
+    protected override async Task OnInitializedAsync()
+    {
+        await base.OnInitializedAsync();
+        await FetchHocVienList();
+    }
+
+    private async Task FetchHocVienList()
+    {
+        hocViens = await httpClient.GetFromJsonAsync<List<HocVien>>("/api/hocviens");
+    }
+
+    private async Task SaveHocVien()
+    {
+        await httpClient.PostAsJsonAsync<HocVien>("/api/hocviens", newHocVien);
+        await FetchHocVienList();
+        newHocVien = new HocVien();
+    }
+
+    private async Task UpdateHocVien(HocVien hocviens)
+    {
+        await httpClient.PutAsJsonAsync<HocVien>("/api/hocviens/", hocviens);
+        await FetchHocVienList();
+    }
+
+    private async Task DeleteHocVien(string maHV)
+    {
+        var result = await httpClient.DeleteAsync($"/api/hocviens/{maHV}");
+        await FetchHocVienList();
+    }
+}

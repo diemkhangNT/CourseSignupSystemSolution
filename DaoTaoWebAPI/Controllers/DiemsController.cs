@@ -32,7 +32,7 @@ namespace DaoTaoWebAPI.Controllers
           {
               return NotFound();
           }
-            var diem = await _context.Diems.FindAsync(hocvienid, lophocid);
+            var diem = _context.Diems.FirstOrDefault(x => x.MaHV == hocvienid && x.MaLopHoc == lophocid);
 
             if (diem == null)
             {
@@ -110,7 +110,7 @@ namespace DaoTaoWebAPI.Controllers
             {
                 return NotFound();
             }
-            var diem = await _context.Diems.FindAsync(hocvienid, lophocid);
+            var diem = _context.Diems.FirstOrDefault(x => x.MaHV == hocvienid && x.MaLopHoc == lophocid);
             if (diem == null)
             {
                 return NotFound();
