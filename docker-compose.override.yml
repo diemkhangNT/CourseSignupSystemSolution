@@ -1,27 +1,13 @@
 version: '3.4'
 
 services:
-  hocvienwebapi:
+  apigateway:
     environment:
       - ASPNETCORE_ENVIRONMENT=Development
     ports:
       - "80"
 
   daotaowebapi:
-    environment:
-      - ASPNETCORE_ENVIRONMENT=Development
-    ports:
-      - "80"
-
-
-  giangvienwebapi:
-    environment:
-      - ASPNETCORE_ENVIRONMENT=Development
-    ports:
-      - "80"
-
-
-  lichnghiwebapi:
     environment:
       - ASPNETCORE_ENVIRONMENT=Development
     ports:
@@ -35,7 +21,21 @@ services:
       - "80"
 
 
-  apigateway:
+  giangvienwebapi:
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+    ports:
+      - "80"
+
+
+  hocvienwebapi:
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+    ports:
+      - "80"
+
+
+  lichnghiwebapi:
     environment:
       - ASPNETCORE_ENVIRONMENT=Development
     ports:
@@ -43,13 +43,6 @@ services:
 
 
   phanquyenwedapi:
-    environment:
-      - ASPNETCORE_ENVIRONMENT=Development
-    ports:
-      - "80"
-
-
-  blazorwebserverui:
     environment:
       - ASPNETCORE_ENVIRONMENT=Development
     ports:
